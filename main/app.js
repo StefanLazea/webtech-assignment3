@@ -74,8 +74,6 @@ app.get('/students', async (req, res) => {
 
 app.post('/students', async (req, res) => {
     try {
-        // TODO
-        console.log(req.body)
         if (Object.keys(req.body).length === 0) {
             return res.status(400).send({ "message": "body is missing" });
         }
@@ -88,9 +86,8 @@ app.post('/students', async (req, res) => {
 
         const age = parseInt(req.body.age);
         if (age < 0) {
-            return res.status(400).send({ "message": "age should be a positive number" })
+            return res.status(400).send({ "message": "age should be a positive number" });
         }
-
 
         Student.create({
             name: req.body.name,
@@ -99,7 +96,6 @@ app.post('/students', async (req, res) => {
         });
 
         return res.status(201).send({ message: "created" });
-
     }
     catch (err) {
         console.warn(err.stack)
